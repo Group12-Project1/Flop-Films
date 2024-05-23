@@ -65,9 +65,78 @@ section {
 }
 
 .picker {
+    position: relative;
     background-color: rgb(255, 255, 255, .75);
     border: solid rgb(197, 197, 197);
     padding: 10px 20px 10px 20px;
     margin: 20px;
     border-radius: 15px;
+    width: 400px;
+}
+
+
+.picker h1{
+   display: flex;
+   justify-content: center;
+    }
+
+    
+.pick-genre{
+    position: relative;
+    padding: 10px;
+    width: 50%;
+}
+
+
+.pick-date{
+    position: relative;
+    padding: 10px;
+    width: 50%;
+}
+
+.mpaa-rating{
+    position: absolute;
+    top:55px;
+    left: 260px;
+}
+
+
+
+.slider{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: black;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover{
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: rgb(0, 0, 0);
+    border-radius: 25px;
+    cursor: pointer;
+}
+.slider-titles{
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+}
+
+button{
+    position: relative;
+    left: 100px;
+    height: 50px;
+    padding: 5px;
+    margin: 20px;
+    background-color: orange;
 }
