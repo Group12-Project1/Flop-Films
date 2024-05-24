@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Flop Films</title>
 </head>
+
 <body>
     <header>
-            <img class="logo" src="./assets/images/FlopFilmsLogo.png">
+        <img class="logo" src="./assets/images/FlopFilmsLogo.png">
         <ul class="nav">
             <li><a>HOME</a></li>
             <li><a>MY FLOPS</a></li>
@@ -19,79 +20,86 @@
             <p>This would be a short description</p>
         </div>
 
-        <div class="picker">
-            <h1>PICK A FLOP</h1>
+        <form onsubmit="form()">
+            <div class="picker">
+                <h1>PICK A FLOP</h1>
 
-            <div class="pick-genre">
-                <label id="pick-genre">Pick Your Genre!</label><br>
-                <select name="genres" id="genres">
-                    <option value="select">-Select genre-</option>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="animation">Animation</option>
-                    <option value="biography">Biography</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="crime">Crime</option>
-                    <option value="documentary">Documentary</option>
-                    <option value="drama">Drama</option>
-                    <option value="family">Family</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="film-noir">Film-Noir</option>
-                    <option value="history">History</option>
-                    <option value="horror">Horror</option>
-                    <option value="musical">Musical</option>
-                    <option value="mystery">Mystery</option>
-                    <option value="romance">Romance</option>
-                    <option value="sci-fi">Sci-Fi</option>
-                    <option value="short">Short</option>
-                    <option value="sport">Sport</option>
-                    <option value="thriller">Thriller</option>
-                    <option value="war">War</option>
-                    <option value="western">Western</option>
-                </select> 
-            </div>
-            
-            <div class="pick-date">
-                <label id="pick-date">Choose A Release Date!</label><br>
-                <input type="month" id="release-date">
-            </div>
-
-            <div class="mpaa-rating">
-                <label id="pick-mpaa">MPAA Rating</label><br>
-
-                <input type="checkbox" id="g-rating" name="g-rating" value="G">
-                <label for="g-rating">G</label><br>
-
-                <input type="checkbox" id="pg-rating" name="pg-rating" value="PG">
-                <label for="pg-rating">PG</label><br>
-
-                <input type="checkbox" id="pg13-rating" name="pg13-rating" value="PG-13">
-                <label for="pg13-rating">PG-13</label><br>
-            
-                <input type="checkbox" id="r-rating" name="r-rating" value="R">
-                <label for="r-rating">R</label><br>
-            
-                <input type="checkbox" id="nc17-rating" name="nc17-rating" value="NC-17">
-                <label for="nv17-rating">NC-17</label><br>
-            </div>
-
-            <div class="slider-container">
-                <input type="range" min="1" max="3" value="2" class="slider" id="flop-slider">
+                <div class="pick-genre">
+                    <label id="pick-genre">Pick Your Genre!</label><br>
+                    <select name="genres" id="genres">
+                        <option value="select">-Select genre-</option>
+                        <option value="action">Action</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="animation">Animation</option>
+                        <option value="biography">Biography</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="crime">Crime</option>
+                        <option value="documentary">Documentary</option>
+                        <option value="drama">Drama</option>
+                        <option value="family">Family</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="film-noir">Film-Noir</option>
+                        <option value="history">History</option>
+                        <option value="horror">Horror</option>
+                        <option value="musical">Musical</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="romance">Romance</option>
+                        <option value="sci-fi">Sci-Fi</option>
+                        <option value="short">Short</option>
+                        <option value="sport">Sport</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="war">War</option>
+                        <option value="western">Western</option>
+                    </select>
                 </div>
+
+                <div class="pick-date">
+                    <label id="pick-date">Choose A Release Date!<br>From:</label><br>
+                    <input type="month" id="start-date">
+                </div>
+
+                <div class="pick-date">
+                    <label id="pick-date">To:</label><br>
+                    <input type="month" id="end-date">
+                </div>
+
+                <div class="mpaa-rating">
+                    <label id="pick-mpaa">MPAA Rating</label><br>
+
+                    <input type="checkbox" id="g-rating" name="g-rating" value="G">
+                    <label for="g-rating">G</label><br>
+
+                    <input type="checkbox" id="pg-rating" name="pg-rating" value="PG">
+                    <label for="pg-rating">PG</label><br>
+
+                    <input type="checkbox" id="pg13-rating" name="pg13-rating" value="PG-13">
+                    <label for="pg13-rating">PG-13</label><br>
+
+                    <input type="checkbox" id="r-rating" name="r-rating" value="R">
+                    <label for="r-rating">R</label><br>
+
+                    <input type="checkbox" id="nc17-rating" name="nc17-rating" value="NC-17">
+                    <label for="nv17-rating">NC-17</label><br>
+                </div>
+
+                <div class="slider-container">
+                    <input type="range" min="1" max="50" value="25" class="slider" id="flop-slider">
+                </div>
+
                 <div class="slider-titles">
                     <p id="baddest">Crimes<br> Against<br> Humanity</p>
                     <p id="badder">REALLY<br> Bad</p>
                     <p id="bad">Bad</p>
                 </div>
 
-                    <button type="button" id="riskyBtn">Click At Your Own Risk</button>
-                
-            </div> 
+                <button type="submit" id="riskyBtn">Click At Your Own Risk</button>
 
-        </div>
+            </div>
+        </form>
     </section>
     <footer>
 
     </footer>
+
     <script type="text/javascript" src="./assets/js/logic.js"></script>
 </body>
