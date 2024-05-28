@@ -75,33 +75,6 @@ section {
 }
 
 
-.picker h1{
-   display: flex;
-   justify-content: center;
-    }
-
-    
-.pick-genre{
-    position: relative;
-    padding: 10px;
-    width: 50%;
-}
-
-
-.pick-date{
-    position: relative;
-    padding: 10px;
-    width: 50%;
-}
-
-.mpaa-rating{
-    position: absolute;
-    top:55px;
-    left: 260px;
-}
-
-
-
 .slider{
     -webkit-appearance: none;
     appearance: none;
@@ -126,17 +99,17 @@ section {
     border-radius: 25px;
     cursor: pointer;
 }
+
 .slider-titles{
     display: flex;
     justify-content: space-between;
     font-size: 17px;
 }
 
-button{
-    position: relative;
-    left: 100px;
-    height: 50px;
-    padding: 5px;
-    margin: 20px;
-    background-color: orange;
+#x{
+    outline: 0;
+    border: 0px solid #fff;
+    background-color: #fff;
+    outline: none;
+    font-size: 25px;
 }
