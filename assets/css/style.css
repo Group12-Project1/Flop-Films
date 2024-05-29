@@ -113,3 +113,14 @@ section {
     outline: none;
     font-size: 25px;
 }
+
+.movieLinks {
+    font-size: large;
+    font-weight: bold;
+}
+
+.errorDisplay {
+    font-size: large;
+    font-weight: bold;
+    color: red;
+}

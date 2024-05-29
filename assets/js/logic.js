@@ -59,6 +59,7 @@ const options = {
     // for (i=0; )
 
 
+
   fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cf7885ddb4db277bd61fff342c3ed606&language=en-US&sort_by=popularity.desc&page=1&release_date.gte=${startDate}&release_date.lte=${endDate}&with_genres=${genre}&vote_average.gte=0.1&vote_average.lte=${sliderSmall}&region=US&certification=PG`, options)
     .then(response => response.json())
     .then(response => console.log(response))
@@ -79,3 +80,51 @@ const options = {
         .catch(err => console.error(err));
 
         // &certification=
+
+
+
+
+const titleId = '1114888';
+const apiKey = "UNvGHvpWihQYgDTaNpSpUjFjplw7RtjzMd1N6JFx";
+
+fetch(`https://api.watchmode.com/v1/title/${titleId}/sources/?apiKey=${apiKey}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data received:', data);
+
+    // Filter out duplicates
+    const uniqueSources = new Set();
+    const uniqueStreamingServices = [];
+
+    data.forEach(source => {
+      const key = source.name; 
+      if (!uniqueSources.has(key)) {
+        uniqueSources.add(key);
+        uniqueStreamingServices.push(source);
+      }
+    });
+
+    console.log('Unique streaming services:', uniqueStreamingServices);
+
+    // Generate HTML for unique streaming services
+    const streamingServicesDiv = document.getElementById('streaming-services');
+    uniqueStreamingServices.forEach(service => {
+      const linkElement = document.createElement('a');
+      linkElement.href = service.web_url;
+      linkElement.textContent = service.name;
+      linkElement.target = '_blank'; // Open link in a new tab
+      streamingServicesDiv.appendChild(linkElement);
+
+      streamingServicesDiv.appendChild(document.createElement('br'));
+    });
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
+
