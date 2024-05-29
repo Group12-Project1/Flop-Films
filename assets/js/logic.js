@@ -83,7 +83,7 @@ const options = {
 
 
 
-
+// WatchMode API function to generate links to streaming services
 const titleId = '1114888';
 const apiKey = "UNvGHvpWihQYgDTaNpSpUjFjplw7RtjzMd1N6JFx";
 
@@ -97,12 +97,14 @@ fetch(`https://api.watchmode.com/v1/title/${titleId}/sources/?apiKey=${apiKey}`)
   .then(data => {
     console.log('Data received:', data);
 
+    const filterData = data.filter(source => source.region === 'US' && source.format === 'SD');
+
     // Filter out duplicates
     const uniqueSources = new Set();
     const uniqueStreamingServices = [];
 
-    data.forEach(source => {
-      const key = source.name; 
+    filterData.forEach(source => {
+      const key = `${source.name}-${source.region}-${source.format}`; 
       if (!uniqueSources.has(key)) {
         uniqueSources.add(key);
         uniqueStreamingServices.push(source);
@@ -117,7 +119,7 @@ fetch(`https://api.watchmode.com/v1/title/${titleId}/sources/?apiKey=${apiKey}`)
       const linkElement = document.createElement('a');
       linkElement.href = service.web_url;
       linkElement.textContent = service.name;
-      linkElement.target = '_blank'; // Open link in a new tab
+      linkElement.target = '_blank'; 
       streamingServicesDiv.appendChild(linkElement);
 
       streamingServicesDiv.appendChild(document.createElement('br'));
