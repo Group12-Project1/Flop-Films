@@ -1,4 +1,31 @@
-function form() {
+const form=document.querySelector('form');
+
+form.addEventListener('submit',function(event){
+  event.preventDefault();
+  var genre = document.getElementById('genres').value;
+  var startDate = document.getElementById('start-date').value;
+  var endDate = document.getElementById('end-date').value;
+  var slider = document.getElementById('flop-slider').value;
+
+
+  localStorage.setItem("genre", genre);
+  localStorage.setItem("start-date", startDate);
+  localStorage.setItem("end-date", endDate);
+  localStorage.setItem("slider", slider);
+
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  let ratings = [];
+
+  checkboxes.forEach(function (checkbox) {
+      if (checkbox.checked) {
+          ratings.push(checkbox.value);
+      }
+  });
+
+  localStorage.setItem('ratings', JSON.stringify(ratings));
+
+
+});
 
     var genre = document.getElementById('genres').value;
     var startDate = document.getElementById('start-date').value;
@@ -18,10 +45,11 @@ function form() {
         if (checkbox.checked) {
             ratings.push(checkbox.value);
         }
+        localStorage.setItem('ratings', JSON.stringify(ratings));
     });
 
-    localStorage.setItem('ratings', JSON.stringify(ratings));
-}
+    
+
 
 
 // const options = {
@@ -44,17 +72,17 @@ const options = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjc4ODVkZGI0ZGIyNzdiZDYxZmZmMzQyYzNlZDYwNiIsInN1YiI6IjY2NTY1NjQyYzZmYTc1YjdhMDBkZWVmMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OjHx9Srf8U0aZGeR1372jzpSU9IJXqhjypME7388u9E'
     }
   };
-    const startDate = localStorage.getItem('start-date')
-    console.log(startDate);
-    const endDate = localStorage.getItem('end-date')
-    console.log(endDate);
-    const genre = localStorage.getItem('genre')
-    console.log(genre);
+    const startDates = localStorage.getItem('start-date')
+    console.log(startDates);
+    const endDates = localStorage.getItem('end-date')
+    console.log(endDates);
+    const genres = localStorage.getItem('genre')
+    console.log(genres);
     const sliderLarge = localStorage.getItem('slider')
     console.log(sliderLarge);
     const sliderSmall = sliderLarge/10
     console.log(sliderSmall)
-    var ratings = JSON.parse(localStorage.getItem('ratings'))
+    var rating = JSON.parse(localStorage.getItem('rating'))
     console.log(ratings);    
     // for (i=0; )
 
@@ -65,7 +93,7 @@ const options = {
     .then(response => console.log(response))
     .catch(err => console.error(err));
 
-    const genres = {
+    const genress = {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -74,7 +102,7 @@ const options = {
       };
     
     
-      fetch('https://api.themoviedb.org/3/certification/movie/list', genres)
+      fetch('https://api.themoviedb.org/3/certification/movie/list', genress)
         .then(response => response.json())
         .then(response => console.log(response))
         .catch(err => console.error(err));
