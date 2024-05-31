@@ -57,13 +57,24 @@ fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cf7885ddb4db277bd61ff
   return response.json();
 })
   .then(function (data) {
+    const movId=[];
     console.log("DO I see this", data);
     for (let i = 0; i < data.results.length; i++) {
-      console.log("this is what I want", data.results[i].id)
-      localStorage.setItem("id", data.results[i].id);
-    }
+      movId.push(data.results[i].id);
 
+      //console.log("this is what I want", data.results[i].id)
+      //localStorage.setItem("id", data.results[i].id);
+    }
+    
+      localStorage.setItem("id", JSON.stringify(movId));
   });
+  const getRandomIndex = function(movArray) {
+    // TODO: Select and display a random movie index
+    const randomIndex=Math.floor(Math.random()*movArray.length);
+    
+    const randomMovieIndex=movArray[randomIndex];
+    console.log('Random Index is :' +randomMovieIndex);
+  }
 
 
 // WatchMode API function to generate links to streaming services
@@ -77,6 +88,11 @@ fetch(`https://api.watchmode.com/v1/title/${titleId}/sources/?apiKey=${apiKey}`)
     return response.json();
   })
   .then(data => {
+    //get Movie index from local storaage
+    const movieIds=JSON.parse(localStorage.getItem('id'));
+    getRandomIndex(movieIds);
+    console.log("this is what I want", movieIds);
+    
     console.log('Data received:', data);
     const filterData = data.filter(source => source.region === 'US' && source.format === 'SD');
     // Filter out duplicates
