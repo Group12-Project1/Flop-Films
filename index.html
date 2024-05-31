@@ -97,13 +97,13 @@
 
                     <div class="row justify-content-center">
                         <div class="col-md-8 text-center">
-                    <button class="btn btn-warning" id="riskyBtn" data-bs-toggle="modal" data-bs-target="#movie-modal">Click At Your Own Risk</button>
+                            <button class="btn btn-warning" id="riskyBtn" data-bs-toggle="modal"
+                                data-bs-target="#movie-modal">Click At Your Own Risk</button>
+                        </div>
                     </div>
-                    </div>
-                </div> 
                 </div>
-                </div>
-        </form>        
+            </div>
+        </form>
 
 
         <div class="modal fade" id="movie-modal">
@@ -114,37 +114,27 @@
                         <h3 class="modal-title mx-auto">Here's Your Movie. Good Luck!</h3>
                         <button type="button" class="close" id="x" data-bs-dismiss="modal">&times;</button>
                     </div>
+                    <div class="modal-body">
+                        <div class="movie-poster">
+                            <img src="" style="height: 300px; width: 200px;" alt="Image" />
 
-                    <div class="row mb-4">
-                        <div class="col-6">
-                            <div class="modal-body">
-                                <div id="movie-poster">
-                                    img placeholder
-                                </div>
+                            <div class="movie-info">
+                                <h3 id="movie-title"></h3>
+                                <div id="vote_average"></div>
+                                <div id="release-date"></div>
+                                <h4 id="movie-overview-hd">Movie Overview</h4>
+                                <div id="overview"></div>
                             </div>
+
                         </div>
-                            
-                        <div class="col-6">
-                            <div id="movie-title">
-                                <h3 id="movie-title">Movie Title</h3>
-                                <p id="movie-info">Information about the movie such as: Title, Release date, Runtime,
-                                    and plot.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-6">
+              
                         <div id="streaming-services">
-                            <h4>Where To Watch</h4>
+                            <h4>Where To Watch:</h4>
                         </div>
+
                     </div>
-
-
-
                 </div>
             </div>
-        </div>
-
         </div>
 
     </section>

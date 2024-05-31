@@ -53,18 +53,27 @@ for (i = 0; i < ratings.length; i++) {
 }
 console.log(certification);
 
+const modalBody  = document.querySelector('.modal-body');
+const poster = 'https://image.tmdb.org/t/p/w500';
+// console.log(`${poster}`);
+// localStorage.setItem("poster", ('https://image.tmdb.org/t/p/w500/'+data.results[i].poster_path));
+
 fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cf7885ddb4db277bd61fff342c3ed606&language=en-US&sort_by=popularity.desc&page=1&release_date.gte=${startDate}&release_date.lte=${endDate}&with_genres=${genre}&vote_average.gte=0.1&vote_average.lte=${sliderSmall}&certification=${certification}&certification_country=US`, options).then(function (response) {
   return response.json();
+
 })
   .then(function (data) {
     const movId=[];
     console.log("DO I see this", data);
     for (let i = 0; i < data.results.length; i++) {
       movId.push(data.results[i].id);
-
       //console.log("this is what I want", data.results[i].id)
       //localStorage.setItem("id", data.results[i].id);
     }
+
+     //This creates a function to call on the data that has already been collected from the form and displayed in the console log. 
+    //   This is the only placement in the code that allows function to work due to what it is collecting from code aboe it.
+      renderMovies(data.results);
     
       localStorage.setItem("id", JSON.stringify(movId));
   });
@@ -76,6 +85,45 @@ fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cf7885ddb4db277bd61ff
     console.log('Random Index is :' +randomMovieIndex);
   }
 
+    //   console.log("this is what I want", data.results[i].id)
+    //   localStorage.setItem("id", data.results[i].id);
+//     }
+//   });
+
+
+// This function pulls the data from function above, this code runs through the data and parses that parameters selected from results to create "movie".
+// Creating a new <div> element allows for the data to be called into the code gathered from the HTML and JS code from the form. Renders the results in the modal. Some CSS was modified for simplicity and clearer reading of code inside modal. 
+  function renderMovies(data){
+    
+    modalBody.innerHTML = '';
+
+    data.forEach(movie =>{
+        const {title, poster_path, overview, vote_average, release_date} = movie;
+        const movieEl = document.createElement('div');
+        movieEl.classList.add('movie-poster');
+        movieEl.innerHTML= `
+        <div class="modal-body">
+        <div class="movie-poster">
+            <img src="${poster+poster_path}" style="height: 300px; width: 200px;" alt="${title}" />
+
+            <div class="movie-info">
+                <h3 id="movie-title">${title}</h3>
+                <div id="vote_average">Rating: ${vote_average}/10</div>
+                <div id="release-date">Release Date: ${release_date}</div>
+                <h4 id="movie-overview-hd">Movie Overview</h4>
+                <div id= "overview">${overview}</div>
+            </div>
+
+        </div>
+        <div id="streaming-services">
+        <h4>Where To Watch:</h4>
+    </div>
+
+`
+
+modalBody.appendChild(movieEl);
+    })
+  }
 
 // WatchMode API function to generate links to streaming services
 const titleId = '1114888';

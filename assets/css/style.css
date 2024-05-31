@@ -124,3 +124,39 @@ section {
     font-weight: bold;
     color: red;
 }
+
+.modal-body{
+    box-shadow: 1px 2px 4px black;
+
+}
+
+.movie-poster{
+    padding:10px;
+    position: relative;
+    /* display: flex; */
+}
+
+img{
+    position: relative;
+     left:25%;
+}
+
+#movie-title{
+   display: flex;
+   justify-content: center;
+    padding: 5px;
+}
+
+#vote_average , #release-date{
+   display: flex;
+   justify-content: space-evenly;
+    display: inline;
+    padding: 10px;
+    margin: 10px;
+}
+
+#movie-overview-hd{
+    display: flex;
+    justify-content: center;
+     padding: 5px;
+}
