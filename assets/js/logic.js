@@ -67,40 +67,55 @@ fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cf7885ddb4db277bd61ff
 
 
 // WatchMode API function to generate links to streaming services
-const titleId = '1114888';
-const apiKey = "UNvGHvpWihQYgDTaNpSpUjFjplw7RtjzMd1N6JFx";
-fetch(`https://api.watchmode.com/v1/title/${titleId}/sources/?apiKey=${apiKey}`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Data received:', data);
-    const filterData = data.filter(source => source.region === 'US' && source.format === 'SD');
-    // Filter out duplicates
-    const uniqueSources = new Set();
-    const uniqueStreamingServices = [];
-    filterData.forEach(source => {
-      const key = `${source.name}-${source.region}-${source.format}`;
-      if (!uniqueSources.has(key)) {
-        uniqueSources.add(key);
-        uniqueStreamingServices.push(source);
+function fetchFromWatchMode(titleId) {
+  const apiKey = "UNvGHvpWihQYgDTaNpSpUjFjplw7RtjzMd1N6JFx";
+
+  fetch(`https://api.watchmode.com/v1/title/${titleId}/sources/?apiKey=${apiKey}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data received from WatchMode:', data);
+
+      const filterData = data.filter(source => source.region === 'US' && source.format === 'SD');
+      // Filter out duplicates
+      const uniqueSources = new Set();
+      const uniqueStreamingServices = [];
+      filterData.forEach(source => {
+        const key = `${source.name}-${source.region}-${source.format}`;
+        if (!uniqueSources.has(key)) {
+          uniqueSources.add(key);
+          uniqueStreamingServices.push(source);
+        }
+      });
+
+      console.log('Unique streaming services:', uniqueStreamingServices);
+      // Generate HTML for streaming services
+      const streamingServicesDiv = document.getElementById('streaming-services');
+      if (streamingServicesDiv) {
+        uniqueStreamingServices.forEach(service => {
+          const linkElement = document.createElement('a');
+          linkElement.href = service.web_url;
+          linkElement.textContent = service.name;
+          linkElement.target = '_blank';
+          streamingServicesDiv.appendChild(linkElement);
+          streamingServicesDiv.appendChild(document.createElement('br'));
+        });
+      } else {
+        console.error('streaming-services not found');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data from WatchMode:', error);
     });
-    console.log('Unique streaming services:', uniqueStreamingServices);
-    // Generate HTML for unique streaming services
-    const streamingServicesDiv = document.getElementById('streaming-services');
-    uniqueStreamingServices.forEach(service => {
-      const linkElement = document.createElement('a');
-      linkElement.href = service.web_url;
-      linkElement.textContent = service.name;
-      linkElement.target = '_blank';
-      streamingServicesDiv.appendChild(linkElement);
-      streamingServicesDiv.appendChild(document.createElement('br'));
-    });
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
+}
+
+const existingTitleId = localStorage.getItem('id');
+if (existingTitleId) {
+  fetchFromWatchMode(existingTitleId);
+} else {
+  console.error('No titleId found in local storage');
+}
