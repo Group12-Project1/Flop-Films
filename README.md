@@ -13,7 +13,7 @@ API's used include TMDb (The Movie Database), and WatchMode.
 
 ## Visuals/Links
 
-<img src="./assets/images/homepage.png">
+<img src="./assets/images/Flop-Films-Showcase.jpg">
 
 https://github.com/Group12-Project1/Flop-Films
 https://group12-project1.github.io/Flop-Films/
