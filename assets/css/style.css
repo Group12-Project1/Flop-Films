@@ -57,6 +57,7 @@ section {
 } 
 
 .welcome {
+    display: block;
     background-color: white;
     border: solid rgb(197, 197, 197);
     padding: 10px 20px 10px 20px;
@@ -134,12 +135,16 @@ section {
     padding:10px;
     position: relative;
     /* display: flex; */
+    img{
+        position: relative;
+         left:25%;
+    }
 }
 
-img{
-    position: relative;
-     left:25%;
+.steps{
+    background-color: rgba(0, 0, 0, 0.089);
 }
+
 
 #movie-title{
    display: flex;
