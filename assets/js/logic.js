@@ -1,35 +1,33 @@
 const form = document.querySelector('form');
 const modalBody = document.querySelector('.modal-body');
+const errorDiv=document.getElementById('error-display');
 const poster = 'https://image.tmdb.org/t/p/w500';
 
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', function add(event) {
    event.preventDefault();
    var genre = document.getElementById('genres').value;
    var startDate = document.getElementById('start-date').value;
    var endDate = document.getElementById('end-date').value;
-   var slider = document.getElementById('flop-slider').value;
-
-
-   localStorage.setItem("genre", genre);
-   localStorage.setItem("start-date", startDate);
-   localStorage.setItem("end-date", endDate);
-   localStorage.setItem("slider", slider);
-
-
+   var slider = document.getElementById('flop-slider').value; 
    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
    let ratings = [];
-
-
-   checkboxes.forEach(function (checkbox) {
+    checkboxes.forEach(function (checkbox) {
        if (checkbox.checked) {
            ratings.push(checkbox.value);
        }
    });
 
-
+  
+  localStorage.setItem("genre", genre);
+   localStorage.setItem("start-date", startDate);
+   localStorage.setItem("end-date", endDate);
+   localStorage.setItem("slider", slider);
    localStorage.setItem('ratings', JSON.stringify(ratings));
    renderMoviesLS();
+
+
+   
 });
 
 
@@ -72,7 +70,13 @@ function renderMoviesLS() {
 function renderMovies(data) {
    modalBody.innerHTML = '';
 
+if(data==''){
 
+  errorDiv.textContent='No movie found for the above search criteria';
+  console.log('No movie found for the above search criteria');
+}
+else
+{ errorDiv.textContent='';
    data.forEach(movie => {
        const { title, poster_path, overview, vote_average, release_date, id } = movie;
        const movieEl = document.createElement('div');
@@ -95,7 +99,7 @@ function renderMovies(data) {
            </div>
        `;
        modalBody.appendChild(movieEl);
-   });
+   });}
 }
 
 function fetchFromWatchMode(movieId) {
