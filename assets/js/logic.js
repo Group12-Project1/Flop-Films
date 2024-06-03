@@ -1,6 +1,6 @@
 const form = document.querySelector('form');
 const modalBody = document.querySelector('.modal-body');
-const errorDiv=document.getElementById('error-display');
+const errorDiv=document.getElementById('errorDisplay');
 const poster = 'https://image.tmdb.org/t/p/w500';
 
 
