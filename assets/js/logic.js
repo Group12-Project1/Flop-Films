@@ -99,7 +99,7 @@ function renderMovies(data) {
 }
 
 function fetchFromWatchMode(movieId) {
-   const apiKey = 'DHcrJoVIL2fFD5kuLHpjN8MB9oejaUwBGtfRx9SJ';
+   const apiKey = '5r5JAKS2hMLVENhz7ABMlyYF2aMwupBEFY16wA0e ';
    fetch(`https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${apiKey}`)
        .then(response => {
            if (!response.ok) {
